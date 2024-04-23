@@ -62,7 +62,7 @@ const Canvas = () => {
       const restoredDrawing = redoHistory.pop();
       const updatedDrawingHistory = [...drawingHistory, restoredDrawing];
       setDrawingHistory(updatedDrawingHistory);
-      const canvas = canvasRef.current;
+      //const canvas = canvasRef.current;
       const image = new Image();
       image.onload = () => {
         context.clearRect(0, 0, context.canvas.width, context.canvas.height);
