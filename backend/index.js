@@ -1,40 +1,36 @@
-const port = 4000;
-
 const express = require("express");
-const app = express();
+const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
-const path = require("path");
 const cors = require("cors");
+const path = require("path");
+require("dotenv").config();
+const uploadRouter = require("./Cloudinary/upload");
+
+const app = express();
+const port = process.env.PORT || 4000;
 
 app.use(express.json());
+app.use(bodyParser.json());
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: "http://localhost:3000", // Allow requests from this origin
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE", // Allow the specified HTTP methods
+    credentials: true, // Allow cookies and HTTP authentication to be sent with the request
   })
 );
 
-//Datatabse cnncn with monodb
-
+// Database connection with MongoDB
 mongoose.connect(
   "mongodb+srv://gaurav:123@cluster0.3pfekll.mongodb.net/clippic"
 );
 
-//API Creation
-
+// API Creation
 app.get("/", (req, res) => {
   res.send("Express App is Running");
 });
 
-app.listen(port, (error) => {
-  if (!error) {
-    console.log("serevr Running on port " + port);
-  } else {
-    console.log("Error: " + error);
-  }
-});
-
-//Schema creating for user model
+// Schema creating for user model
 const Users = mongoose.model("Users", {
   name: {
     type: String,
@@ -52,52 +48,70 @@ const Users = mongoose.model("Users", {
   },
 });
 
-//creating endpoint for registring the suer
-
+// Endpoint for registering the user
 app.post("/signup", async (req, res) => {
-  let check = await Users.findOne({ email: req.body.email });
-  if (check) {
-    return res.status(400).json({
-      success: false,
-      error: "existing user found with same email address",
+  try {
+    let check = await Users.findOne({ email: req.body.email });
+    if (check) {
+      return res.status(400).json({
+        success: false,
+        error: "existing user found with same email address",
+      });
+    }
+    const user = new Users({
+      name: req.body.username,
+      email: req.body.email,
+      password: req.body.password,
     });
+
+    await user.save();
+
+    const data = {
+      user: {
+        id: user.id,
+      },
+    };
+
+    const token = jwt.sign(data, "secret_ecom");
+    res.json({ success: true, token });
+  } catch (error) {
+    res.status(500).json({ success: false, error: error.message });
   }
-  const user = new Users({
-    name: req.body.username,
-    email: req.body.email,
-    password: req.body.password,
-  });
-
-  await user.save();
-
-  const data = {
-    user: {
-      id: user.id,
-    },
-  };
-
-  const token = jwt.sign(data, "secret_ecom");
-  res.json({ success: true, token });
 });
 
-//creating endpoint for user login
-
+// Endpoint for user login
 app.post("/login", async (req, res) => {
-  let user = await Users.findOne({ email: req.body.email });
-  if (user) {
-    const passCompare = req.body.password === user.password;
-    if (passCompare) {
-      const data = {
-        user: {
-          id: user.id,
-        },
-      };
-      const token = jwt.sign(data, "secret_ecom");
-      res.json({ success: true, token });
+  try {
+    let user = await Users.findOne({ email: req.body.email });
+    if (user) {
+      const passCompare = req.body.password === user.password;
+      if (passCompare) {
+        const data = {
+          user: {
+            id: user.id,
+          },
+        };
+        const token = jwt.sign(data, "secret_ecom");
+        res.json({ success: true, token });
+      } else {
+        res.json({ success: false, error: "Wrong Password" });
+      }
     } else {
-      res.json({ success: false, error: "Wrong Password" });
+      res.json({ success: false, error: "Wrong Email Address" });
     }
+  } catch (error) {
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
+
+// Mount the upload router at '/cloudinary/upload'
+app.use("/cloudinary", uploadRouter);
+
+// Listen for connections
+app.listen(port, (error) => {
+  if (!error) {
+    console.log("Server running on port " + port);
   } else {
-    res.json({ success: false, error: "Wrong Email Address" });
+    console.log("Error: " + error);
   }
 });

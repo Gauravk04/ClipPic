@@ -1,6 +1,6 @@
-/* eslint-disable no-unused-vars */
 import React, { useRef, useEffect, useState } from "react";
 import Tools from "./Tools";
+import axios from "axios";
 
 import {
   StyledCanvas,
@@ -10,6 +10,7 @@ import {
   StyledInput,
   GlobalStyle,
 } from "./Styles";
+
 const Canvas = () => {
   const canvasRef = useRef(null);
   const [isDrawing, setIsDrawing] = useState(false);
@@ -73,7 +74,7 @@ const Canvas = () => {
   };
 
   const erase = () => {
-    setColor("black"); // Set color to white for erasing
+    setColor("black");
   };
 
   const undoDrawing = () => {
@@ -92,14 +93,58 @@ const Canvas = () => {
     }
   };
 
-  const saveImage = () => {
+  const saveImageToCloudinary = async () => {
     const canvas = canvasRef.current;
-    const link = document.createElement("a");
-    link.href = canvas.toDataURL();
-    const fileName = prompt("enter a name to save file");
-    link.download = `${fileName}`;
-    link.download ? alert("saved successfully") : alert("problem");
-    link.click();
+    const imageData = canvas.toDataURL();
+
+    try {
+      const response = await axios.post(
+        "http://localhost:4000/cloudinary/upload",
+        { file: imageData }, // Send image data as JSON object
+        { headers: { "Content-Type": "application/json" } } // Set content type header
+      );
+      console.log("Upload successful:", response.data);
+      alert("Image saved to Cloudinary successfully");
+    } catch (error) {
+      console.error("Error uploading image to Cloudinary:", error);
+      alert("Error saving image to Cloudinary");
+    }
+
+    // Convert Data URL to Blob
+    // fetch(imageData)
+    //   .then((res) => res.blob())
+    //   .then((blob) => {
+    //     // Create a File object from the Blob
+    //      file = new File([blob], "image.png", { type: "image/png" });
+
+    //     // Prepare FormData with the File and upload preset
+    //     const formData = new FormData();
+    //     formData.append("file", file);
+    //     formData.append("upload_preset", "ml_default");
+
+    //     console.log("FormData:", formData);
+    //     const data = "test"
+
+    //     // Make a POST request to Cloudinary's upload API
+    //     fetch("http://localhost:4000/cloudinary/upload", {
+    //       method: "POST",
+    //       body: data,
+    //     })
+    //       .then((response) => response.json())
+    //       .then((data) => {
+    //         // Handle the response from Cloudinary
+    //         console.log("Upload successful:", data);
+    //         alert("Image saved to Cloudinary successfully");
+    //       })
+    //       .catch((error) => {
+    //         console.error("Error uploading image to Cloudinary:", error);
+    //         alert("Error saving image to Cloudinary");
+    //       });
+    //   })
+    //   .catch((error) => {
+    //     console.error("Error converting Data URL to Blob:", error);
+    //     alert("Error converting image data");
+    //   });
   };
 
   return (
@@ -135,7 +180,7 @@ const Canvas = () => {
           <Div>
             <Tools
               method_props={{
-                saveImage_prop: saveImage,
+                saveImage_prop: saveImageToCloudinary,
                 clearCanvas_prop: clearCanvas,
                 erase_prop: erase,
                 undo_props: undoDrawing,
