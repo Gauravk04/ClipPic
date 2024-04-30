@@ -82,7 +82,7 @@ const Canvas = () => {
       const undoneDrawing = drawingHistory.pop();
       const updatedRedoHistory = [...redoHistory, undoneDrawing];
       setRedoHistory(updatedRedoHistory);
-      const canvas = canvasRef.current;
+      //const canvas = canvasRef.current;
       const image = new Image();
       image.onload = () => {
         context.clearRect(0, 0, context.canvas.width, context.canvas.height);
