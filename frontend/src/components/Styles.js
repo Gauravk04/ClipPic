@@ -58,7 +58,7 @@
 //   }
 // `;
 
-///////////              ORANGE //////////
+///////////              ORANGE         //////////
 import styled, { createGlobalStyle } from "styled-components";
 
 //canvas style
@@ -112,7 +112,7 @@ export const StyledInput = styled.input`
 `;
 export const GlobalStyle = createGlobalStyle`
 body{
-    background: #111;
+    background: #000;
     padding: 0px;
     margin: 0px;
 }
