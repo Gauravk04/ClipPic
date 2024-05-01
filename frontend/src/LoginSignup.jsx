@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import {useNavigate} from "react-router-dom"
 import  './LoginSignup.css';
 
 function Loginsignup()  {
 
   const [state,setState]=useState("Login");
+  let navigate=useNavigate();
 
   const [formData,setFormData]=useState({
     username:"",
@@ -44,7 +46,8 @@ function Loginsignup()  {
       }).then((response) => response.json()).then((data) =>responseData = data)
           if (responseData.success) {
             localStorage.setItem('auth-token', responseData.token);
-            window.location.replace("./DrawingBoard");
+            // window.location.replace("./DrawingBoard");
+            navigate("/DrawingBoard");
           }
           else{
             alert(responseData.error)
@@ -65,7 +68,8 @@ function Loginsignup()  {
     }).then((response) => response.json()).then((data) =>responseData = data)
         if (responseData.success) {
           localStorage.setItem('auth-token', responseData.token);
-          window.location.replace("./DrawingBoard");
+          // window.location.replace("./DrawingBoard");
+          navigate("/DrawingBoard");
         }
         else{
           alert(responseData.error)
