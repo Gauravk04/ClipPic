@@ -97,9 +97,9 @@ const Canvas = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:4000/cloudinary/upload",
+        "https://clippic.onrender.com/cloudinary/upload",
         { file: imageData }, // Send image data as JSON object
-        { headers: { "Content-Type": "application/json" } } 
+        { headers: { "Content-Type": "application/json" } }
       );
       console.log("Upload successful:", response.data);
       alert("Image saved to Cloudinary successfully");
