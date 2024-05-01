@@ -12,14 +12,15 @@ const port = process.env.PORT || 4000;
 
 app.use(express.json());
 app.use(bodyParser.json());
-app.use(
-  cors({
-    origin: "http://localhost:3000", // Allow requests from this origin
-    methods: "GET,HEAD,PUT,PATCH,POST,DELETE", // Allow the specified HTTP methods
-    credentials: true, // Allow cookies and HTTP authentication to be sent with the request
-  })
-);
+// app.use(
+//   cors({
+//     origin: "http://localhost:3000", // Allow requests from this origin
+//     methods: "GET,HEAD,PUT,PATCH,POST,DELETE", // Allow the specified HTTP methods
+//     credentials: true, // Allow cookies and HTTP authentication to be sent with the request
+//   })
+// );
 
+app.use(cors());
 // Database connection with MongoDB
 mongoose.connect(
   "mongodb+srv://gaurav:123@cluster0.3pfekll.mongodb.net/clippic"
