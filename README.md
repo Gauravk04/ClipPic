@@ -73,7 +73,7 @@ Login-SignUp Backend MongoDB -
 
 ![Screenshot (54)](https://github.com/Gauravk04/ClipPic/assets/121782880/b6cdce10-d8a4-415c-8639-2a323b5a1d24)
 
-Documentation Saving Coudinary -
+Documentation Saving Cloudinary -
 
 ![Screenshot (53)](https://github.com/Gauravk04/ClipPic/assets/121782880/5ea88822-b0c4-4d44-84a0-712dab01dc14)
 
