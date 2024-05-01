@@ -1,4 +1,6 @@
-# CLIPPIC 
+# *_CLIPPIC_*
+
+# Live At: https://clippic.netlify.app/
 
 # React js drawing_Board
 
@@ -23,6 +25,7 @@ A collaborative drawing board application with various features.
 
 The project is a web-based collaborative drawing board that allows users to draw, save their drawings, and collaborate with others in real-time. It provides various tools for drawing and editing, such as different colors, line widths, eraser, undo/redo functionality, and more.
 Database used MONGODB ATLAS(GOOGLE DRIVE) online cloud.
+Image saving at Cloudinary using environement variables.
 ## Features
 
 - Drawing board with various drawing tools (colors, line widths, eraser, etc.).
@@ -34,7 +37,12 @@ Database used MONGODB ATLAS(GOOGLE DRIVE) online cloud.
 
 ## Technologies Used
 
+<<<<<<< HEAD
 - React js, styled-components,hooks
+=======
+- React Js, styled-components, Hooks
+- Node Js - MongoDb, Cloudinary
+>>>>>>> 61c8f54939f8267196fa1a3aa0d4ac6bf4ea5c8d
 
 ## Getting Started
 
@@ -53,11 +61,21 @@ For Backend:
    
 
 ### App images
+## Frontend Part: 
 
-![Screenshot 2024-04-10 225524](https://github.com/Gauravk04/ClipPic/assets/121782880/07d2bb16-6b2c-44a8-9510-db6d960d5008)
+![Screenshot (15)](https://github.com/Gauravk04/ClipPic/assets/121782880/e57252a3-4d12-4332-8619-33ddc8198217)
+
 ![Screenshot (13)](https://github.com/Gauravk04/ClipPic/assets/121782880/2266473c-72f5-47bb-8a14-9e1ea0112361)
 
 
+## Backend Part:
+Login-SignUp Backend MongoDB -
+
+![Screenshot (54)](https://github.com/Gauravk04/ClipPic/assets/121782880/b6cdce10-d8a4-415c-8639-2a323b5a1d24)
+
+Documentation Saving Coudinary -
+
+![Screenshot (53)](https://github.com/Gauravk04/ClipPic/assets/121782880/5ea88822-b0c4-4d44-84a0-712dab01dc14)
 
 
 ## Testing
