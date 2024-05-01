@@ -1,6 +1,6 @@
 # CLIPPIC 
 
-# Reactjs drawing_Board
+# React js drawing_Board
 
 A collaborative drawing board application with various features.
 
@@ -34,7 +34,7 @@ Database used MONGODB ATLAS(GOOGLE DRIVE) online cloud.
 
 ## Technologies Used
 
-- Reactjs, styled-components,hooks
+- React js, styled-components,hooks
 
 ## Getting Started
 
