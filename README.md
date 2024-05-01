@@ -1,6 +1,6 @@
-# CLIPPIC 
+# *_CLIPPIC_*
 
-Live At: https://clippic.netlify.app/
+# Live At: https://clippic.netlify.app/
 
 # Reactjs drawing_Board
 
@@ -25,6 +25,7 @@ A collaborative drawing board application with various features.
 
 The project is a web-based collaborative drawing board that allows users to draw, save their drawings, and collaborate with others in real-time. It provides various tools for drawing and editing, such as different colors, line widths, eraser, undo/redo functionality, and more.
 Database used MONGODB ATLAS(GOOGLE DRIVE) online cloud.
+Image saving at Cloudinary using environement variables.
 ## Features
 
 - Drawing board with various drawing tools (colors, line widths, eraser, etc.).
@@ -36,7 +37,8 @@ Database used MONGODB ATLAS(GOOGLE DRIVE) online cloud.
 
 ## Technologies Used
 
-- Reactjs, styled-components,hooks
+- React Js, styled-components, Hooks
+- Node Js - MongoDb, Cloudinary
 
 ## Getting Started
 
