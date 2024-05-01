@@ -34,7 +34,7 @@ function Loginsignup()  {
     if (!validateForm()) return;
       console.log("Login Function Executed",formData);
       let responseData;
-      await fetch('http://localhost:4000/login', {
+      await fetch('https://clippic.onrender.com/login', {
         method: 'POST',
         headers: {
           Accept: 'application/form-data',
@@ -55,7 +55,7 @@ function Loginsignup()  {
     if (!validateForm()) return;
     console.log("SignUp Function Executed", formData);
     let responseData;
-    await fetch('http://localhost:4000/signup', {
+    await fetch('https://clippic.onrender.com/signup', {
       method: 'POST',
       headers: {
         Accept: 'application/form-data',
