@@ -104,8 +104,3 @@ We welcome contributions from developers to improve and add new features to the 
 5. Open a pull request (PR) in this repository with a clear description of your changes.
 
 Please ensure that your code follows the project's coding style and conventions. It's also recommended to include tests for your changes.
-
-
-## License
-
-This project is licensed under the MIT - see the license file for details.
