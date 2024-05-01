@@ -62,7 +62,6 @@ const Canvas = () => {
       const restoredDrawing = redoHistory.pop();
       const updatedDrawingHistory = [...drawingHistory, restoredDrawing];
       setDrawingHistory(updatedDrawingHistory);
-      //const canvas = canvasRef.current;
       const image = new Image();
       image.onload = () => {
         context.clearRect(0, 0, context.canvas.width, context.canvas.height);
@@ -82,7 +81,6 @@ const Canvas = () => {
       const undoneDrawing = drawingHistory.pop();
       const updatedRedoHistory = [...redoHistory, undoneDrawing];
       setRedoHistory(updatedRedoHistory);
-      //const canvas = canvasRef.current;
       const image = new Image();
       image.onload = () => {
         context.clearRect(0, 0, context.canvas.width, context.canvas.height);
@@ -101,7 +99,7 @@ const Canvas = () => {
       const response = await axios.post(
         "http://localhost:4000/cloudinary/upload",
         { file: imageData }, // Send image data as JSON object
-        { headers: { "Content-Type": "application/json" } } // Set content type header
+        { headers: { "Content-Type": "application/json" } } 
       );
       console.log("Upload successful:", response.data);
       alert("Image saved to Cloudinary successfully");
